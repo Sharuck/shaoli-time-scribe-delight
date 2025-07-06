@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Calendar, Clock, Share2, Download, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,6 +9,7 @@ import { Confetti } from './Confetti';
 import { LoadingSpinner } from './LoadingSpinner';
 import { ResultCard } from './ResultCard';
 import { ShareModal } from './ShareModal';
+import { ThemeToggle } from './ThemeToggle';
 
 const HourCalculator = () => {
   const [startDate, setStartDate] = useState('');
@@ -119,28 +119,29 @@ const HourCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4 font-inter">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-black dark:to-gray-800 py-8 px-4 font-inter transition-colors duration-300">
       {showConfetti && <Confetti />}
+      <ThemeToggle />
       
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 animate-slide-up">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="w-8 h-8 text-purple-600 animate-float" />
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            <Sparkles className="w-8 h-8 text-gray-800 dark:text-white animate-float" />
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
               Shaoli's Calculator
             </h1>
-            <Sparkles className="w-8 h-8 text-blue-600 animate-float" style={{ animationDelay: '1s' }} />
+            <Sparkles className="w-8 h-8 text-gray-600 dark:text-gray-300 animate-float" style={{ animationDelay: '1s' }} />
           </div>
-          <p className="text-lg text-gray-600 mb-2">Hour Duration Calculator</p>
-          <p className="text-sm text-gray-500 italic">By yours truly, Sharuck ✨</p>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">Hour Duration Calculator</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 italic">By yours truly, Sharuck ✨</p>
         </div>
 
         {/* Main Calculator Card */}
-        <Card className="backdrop-blur-sm bg-white/80 border-0 shadow-2xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
+        <Card className="backdrop-blur-sm bg-white/80 dark:bg-black/60 border border-gray-200 dark:border-gray-700 shadow-2xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
           <CardHeader className="text-center pb-4">
-            <CardTitle className="flex items-center justify-center gap-2 text-2xl font-semibold text-gray-800">
-              <Clock className="w-6 h-6 text-blue-600" />
+            <CardTitle className="flex items-center justify-center gap-2 text-2xl font-semibold text-gray-800 dark:text-white">
+              <Clock className="w-6 h-6 text-gray-700 dark:text-gray-300" />
               Calculate Duration
             </CardTitle>
           </CardHeader>
@@ -149,7 +150,7 @@ const HourCalculator = () => {
             {/* Start Date/Time */}
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="start-date" className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <Label htmlFor="start-date" className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   Start Date
                 </Label>
@@ -158,12 +159,12 @@ const HourCalculator = () => {
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="start-time" className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <Label htmlFor="start-time" className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
                   <Clock className="w-4 h-4" />
                   Start Time
                 </Label>
@@ -172,7 +173,7 @@ const HourCalculator = () => {
                   type="time"
                   value={startTime}
                   onChange={(e) => setStartTime(e.target.value)}
-                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                 />
               </div>
             </div>
@@ -180,7 +181,7 @@ const HourCalculator = () => {
             {/* End Date/Time */}
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="end-date" className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <Label htmlFor="end-date" className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   End Date
                 </Label>
@@ -189,12 +190,12 @@ const HourCalculator = () => {
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="end-time" className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <Label htmlFor="end-time" className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
                   <Clock className="w-4 h-4" />
                   End Time
                 </Label>
@@ -203,7 +204,7 @@ const HourCalculator = () => {
                   type="time"
                   value={endTime}
                   onChange={(e) => setEndTime(e.target.value)}
-                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                 />
               </div>
             </div>
@@ -212,7 +213,7 @@ const HourCalculator = () => {
             <Button
               onClick={calculateHours}
               disabled={isCalculating}
-              className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+              className="w-full h-12 text-lg font-semibold bg-black hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-200 text-white dark:text-black border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
             >
               {isCalculating ? (
                 <LoadingSpinner />
