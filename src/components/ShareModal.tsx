@@ -47,28 +47,28 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, result 
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-gray-900/95 backdrop-blur-sm border border-white/20 shadow-2xl animate-scale-in">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md bg-white/95 backdrop-blur-sm border-0 shadow-2xl animate-scale-in">
         <CardHeader className="flex flex-row items-center justify-between pb-4">
-          <CardTitle className="text-xl font-semibold text-white">Share Result</CardTitle>
+          <CardTitle className="text-xl font-semibold text-gray-800">Share Result</CardTitle>
           <Button
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="h-8 w-8 p-0 hover:bg-white/10 text-gray-300 hover:text-white"
+            className="h-8 w-8 p-0 hover:bg-gray-100"
           >
             <X className="w-4 h-4" />
           </Button>
         </CardHeader>
         
         <CardContent className="space-y-4">
-          <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-sm text-gray-300 font-mono whitespace-pre-line">
+          <div className="bg-gray-50 rounded-lg p-4 text-sm text-gray-700 font-mono whitespace-pre-line">
             {shareText}
           </div>
           
           <Button
             onClick={handleCopy}
-            className="w-full h-10 bg-gradient-to-r from-orange-500 via-red-500 to-green-500 hover:from-orange-600 hover:via-red-600 hover:to-green-600 text-white font-semibold transition-all duration-200"
+            className="w-full h-10 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold transition-all duration-200"
           >
             {copied ? (
               <>
