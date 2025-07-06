@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import { Confetti } from './Confetti';
 import { LoadingSpinner } from './LoadingSpinner';
-import { ResultCard } from './ResultCard';
+import { TimeWheel } from './TimeWheel';
 import { ShareModal } from './ShareModal';
 
 const HourCalculator = () => {
@@ -119,28 +119,40 @@ const HourCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4 font-inter">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-8 px-4 font-inter relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+          backgroundSize: '20px 20px'
+        }}></div>
+      </div>
+      
+      {/* Gradient Border Effect */}
+      <div className="absolute inset-4 rounded-3xl bg-gradient-to-r from-orange-500 via-red-500 to-green-500 opacity-20 blur-sm"></div>
+      
       {showConfetti && <Confetti />}
       
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-8 animate-slide-up">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="w-8 h-8 text-purple-600 animate-float" />
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            <Sparkles className="w-8 h-8 text-orange-400 animate-float" />
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-400 via-yellow-400 to-green-400 bg-clip-text text-transparent">
               Shaoli's Calculator
             </h1>
-            <Sparkles className="w-8 h-8 text-blue-600 animate-float" style={{ animationDelay: '1s' }} />
+            <Sparkles className="w-8 h-8 text-green-400 animate-float" style={{ animationDelay: '1s' }} />
           </div>
-          <p className="text-lg text-gray-600 mb-2">Hour Duration Calculator</p>
-          <p className="text-sm text-gray-500 italic">By yours truly, Sharuck ✨</p>
+          <p className="text-lg text-gray-300 mb-2">Noise off. Focus on.</p>
+          <p className="text-lg text-gray-300 mb-2">Time doesn't rush here.</p>
+          <p className="text-sm text-gray-400 italic">By yours truly, Sharuck ✨</p>
         </div>
 
         {/* Main Calculator Card */}
-        <Card className="backdrop-blur-sm bg-white/80 border-0 shadow-2xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
+        <Card className="backdrop-blur-sm bg-white/5 border border-white/10 shadow-2xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
           <CardHeader className="text-center pb-4">
-            <CardTitle className="flex items-center justify-center gap-2 text-2xl font-semibold text-gray-800">
-              <Clock className="w-6 h-6 text-blue-600" />
+            <CardTitle className="flex items-center justify-center gap-2 text-2xl font-semibold text-white">
+              <Clock className="w-6 h-6 text-orange-400" />
               Calculate Duration
             </CardTitle>
           </CardHeader>
@@ -149,7 +161,7 @@ const HourCalculator = () => {
             {/* Start Date/Time */}
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="start-date" className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <Label htmlFor="start-date" className="text-sm font-medium text-gray-300 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   Start Date
                 </Label>
@@ -158,12 +170,12 @@ const HourCalculator = () => {
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full bg-white/10 border-white/20 text-white placeholder-gray-400 transition-all duration-200 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="start-time" className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <Label htmlFor="start-time" className="text-sm font-medium text-gray-300 flex items-center gap-2">
                   <Clock className="w-4 h-4" />
                   Start Time
                 </Label>
@@ -172,7 +184,7 @@ const HourCalculator = () => {
                   type="time"
                   value={startTime}
                   onChange={(e) => setStartTime(e.target.value)}
-                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full bg-white/10 border-white/20 text-white placeholder-gray-400 transition-all duration-200 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 />
               </div>
             </div>
@@ -180,7 +192,7 @@ const HourCalculator = () => {
             {/* End Date/Time */}
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="end-date" className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <Label htmlFor="end-date" className="text-sm font-medium text-gray-300 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   End Date
                 </Label>
@@ -189,12 +201,12 @@ const HourCalculator = () => {
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  className="w-full bg-white/10 border-white/20 text-white placeholder-gray-400 transition-all duration-200 focus:ring-2 focus:ring-green-500 focus:border-green-500"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="end-time" className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <Label htmlFor="end-time" className="text-sm font-medium text-gray-300 flex items-center gap-2">
                   <Clock className="w-4 h-4" />
                   End Time
                 </Label>
@@ -203,7 +215,7 @@ const HourCalculator = () => {
                   type="time"
                   value={endTime}
                   onChange={(e) => setEndTime(e.target.value)}
-                  className="w-full transition-all duration-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  className="w-full bg-white/10 border-white/20 text-white placeholder-gray-400 transition-all duration-200 focus:ring-2 focus:ring-green-500 focus:border-green-500"
                 />
               </div>
             </div>
@@ -212,28 +224,57 @@ const HourCalculator = () => {
             <Button
               onClick={calculateHours}
               disabled={isCalculating}
-              className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+              className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-orange-500 via-red-500 to-green-500 hover:from-orange-600 hover:via-red-600 hover:to-green-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
             >
               {isCalculating ? (
                 <LoadingSpinner />
               ) : (
                 <>
                   <Sparkles className="w-5 h-5 mr-2" />
-                  Calculate Duration
+                  Start Focus Session
                 </>
               )}
             </Button>
           </CardContent>
         </Card>
 
-        {/* Result Card */}
+        {/* Result Display with Time Wheel */}
         {result && (
           <div className="mt-8 animate-celebration">
-            <ResultCard 
-              result={result}
-              onShare={handleShare}
-              onExport={handleExportPDF}
-            />
+            <Card className="backdrop-blur-sm bg-white/5 border border-white/10 shadow-2xl">
+              <CardContent className="py-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-2">Flow time</h3>
+                </div>
+                
+                <TimeWheel result={result} />
+                
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 mt-8 max-w-md mx-auto">
+                  <Button
+                    onClick={handleShare}
+                    variant="outline"
+                    className="flex-1 h-12 bg-white/10 border-white/20 hover:bg-white/20 text-white font-semibold transition-all duration-200 hover:scale-[1.02]"
+                  >
+                    <Share2 className="w-4 h-4 mr-2" />
+                    Share Result
+                  </Button>
+                  <Button
+                    onClick={handleExportPDF}
+                    variant="outline"
+                    className="flex-1 h-12 bg-white/10 border-white/20 hover:bg-white/20 text-white font-semibold transition-all duration-200 hover:scale-[1.02]"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Export as File
+                  </Button>
+                </div>
+
+                {/* Signature */}
+                <div className="text-center text-sm text-gray-400 italic pt-6 border-t border-white/10 mt-6">
+                  Calculated with ❤️ by Sharuck
+                </div>
+              </CardContent>
+            </Card>
           </div>
         )}
       </div>
