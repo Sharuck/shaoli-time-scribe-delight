@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Calendar, Clock, Share2, Download, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -231,7 +230,7 @@ const HourCalculator = () => {
               ) : (
                 <>
                   <Sparkles className="w-5 h-5 mr-2" />
-                  Start Focus Session
+                  Calculate Vault Timing
                 </>
               )}
             </Button>
